@@ -7,7 +7,7 @@ export default function NavMenu() {
 
   return (
     <Popover className="relative">
-      <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 p-1 rounded-lg bg-purple-500 sm:m-7">
+      <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 p-2 rounded-lg bg-violet-400 sm:m-7">
         <Bars3Icon className='w-8 h-8 text-white ' />
       </Popover.Button>
 
@@ -25,14 +25,14 @@ export default function NavMenu() {
             <p className='text-center'>Hi: User</p>
             <Link
               to='/profile'
-              className='block p-2 hover:text-purple-700'
+              className='block p-2 hover:text-fuchsia-700'
             >My Profile</Link>
             <Link
               to='/'
-              className='block p-2 hover:text-purple-700'
+              className='block p-2 hover:text-fuchsia-700'
             >My Projects</Link>
             <button
-              className='block p-2 hover:text-purple-700'
+              className='block p-2 hover:text-fuchsia-700'
               type='button'
               onClick={() => { }}
             >

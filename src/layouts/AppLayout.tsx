@@ -1,5 +1,7 @@
 
 import { Outlet } from "react-router-dom"  //Para llamar componentes padres
+import { ToastContainer } from "react-toastify"  //Notificacion 
+import 'react-toastify/dist/ReactToastify.css' //Llalamos la hoja de estilos
 import Logo from "@/components/Logo"
 import NavMenu from "@/components/NavMenu"
 
@@ -26,6 +28,11 @@ export default function AppLayout() {
        <footer className="py-5">
         <p className="text-center">© {new Date().getFullYear()} UpTask. All Rights Reserved.</p>
        </footer>
+
+       <ToastContainer
+          pauseOnHover={false}
+          pauseOnFocusLoss={false}
+       />
     </>
 
   )
