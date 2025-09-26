@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 import { getProjectById } from "@/api/ProjectAPI"
 import AddTaskModal from "@/components/tasks/AddTaskModal"
 import TaskList from "@/components/tasks/TaskList"
+import EditTaskData from "@/components/tasks/EditTaskData"
 
 
 export default function ProjectDetailsView() {
@@ -17,6 +18,7 @@ export default function ProjectDetailsView() {
         queryFn: () => getProjectById(projectId),  //Funcion que conecta con la API
         retry: false   //cancelamos que lo reintente
     })
+
 
     if(isLoading) return "Loading..."  //Captura cuando ste cargando el query
 
@@ -40,6 +42,7 @@ export default function ProjectDetailsView() {
                     />
 
                     <AddTaskModal/>
+                    <EditTaskData/>
                     
                 </>
             )  

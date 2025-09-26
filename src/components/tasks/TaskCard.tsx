@@ -1,13 +1,38 @@
+
 import type { Task } from "@/types/index"
 import { Menu, Transition } from "@headlessui/react"
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useNavigate, useParams } from "react-router-dom"
+import { toast } from "react-toastify"
 import { Fragment } from "react/jsx-runtime"
+import { deleteTask } from "@/api/TaskAPI"
 
 type TaskCardProps = {
     task: Task
 }
 
 export default function TaskCard({task} : TaskCardProps) {
+
+    const navigate = useNavigate()  //Instanciasmos useNavigate
+    const queryClient = useQueryClient()  //Instanciasmos useNavigate
+    const params = useParams() //Instanciamos useparams
+
+    const projectId = params.projectId!  //Obtenemos el projectId del url, siempre existe entonces no habra any
+
+    const {mutate} = useMutation({  //Instanciamos el mutation
+        mutationFn: deleteTask,
+        onError: (error) => {    //Si hay error
+            toast.error(error.message)
+        },
+        onSuccess: (data) => {        //Si es success 
+            queryClient.invalidateQueries({queryKey: ['projectDetails']})  //elimina el cache
+            toast.success(data) //Muestra un toast de success con el return data  (Checar backend)
+        }
+    })
+
+    
+
     return(
         <li className="p-5 bg-white border border-slate-300 flex justify-between gap-3">
             
@@ -36,13 +61,19 @@ export default function TaskCard({task} : TaskCardProps) {
                                 </button>
                             </Menu.Item>
                             <Menu.Item>
-                                <button type='button' className='block px-3 py-1 text-sm leading-6 text-gray-900'>
+                                <button 
+                                type='button' className='block px-3 py-1 text-sm leading-6 text-gray-900'
+                                onClick={() => navigate(location.pathname + `?editTask=${task._id}`)}
+                                >
                                     Edit Task
                                 </button>
                             </Menu.Item>
 
                             <Menu.Item>
-                                <button type='button' className='block px-3 py-1 text-sm leading-6 text-red-500'>
+                                <button 
+                                    type='button' className='block px-3 py-1 text-sm leading-6 text-red-500'
+                                    onClick={() => mutate({projectId, taskId: task._id})}   
+                                >    
                                     Delete Task
                                 </button>
                             </Menu.Item>
