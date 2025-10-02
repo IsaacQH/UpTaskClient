@@ -2,6 +2,7 @@
 
 import type { Task } from "@/types/index"
 import TaskCard from "./TaskCard"
+import { statusTranslations } from "@/locales/es"
 
 //------ Tipados del compoente ---------
 type TaskListProps = {  //Tipado de props
@@ -18,14 +19,6 @@ const initialStatusGropus : GroupedTasks= {   //Ininicamos valores para evitar e
 }
 //-------------------------------------
 
-//Definicion de diccioonarios para traducir el status
-const statusTranslations : {[key:string] : string} = {  //Le decimos que el key sera string al igual que el valor
-        pending: 'Pending',
-        onHold: 'On Hold',
-        inProgress: 'In Progress',
-        underReview: 'Under Review',
-        complete: 'Complete'
-}
 const statusStyles: {[key:string] : string} = {  //Le decimos que el key sera string al igual que el valor
         pending: 'border-t-indigo-500 text-indigo-500',
         onHold: 'border-t-red-500 text-red-500',

@@ -31,7 +31,8 @@ export type ProjectFormData = Pick<Project, 'clientName' | 'projectName' | 'desc
 //  -------------- TASK -----------------
 
 //Definimos las opciones de status
-export const TaskStatusSchema = z.enum([ "pending" , "onHold" , "inProgress",  "underReview" , "complete" ]) 
+export const TaskStatusSchema = z.enum(["pending" , "onHold" , "inProgress",  "underReview" , "complete"]) 
+export type TaskStatus = z.infer<typeof TaskStatusSchema>
 
 //Schema de Tasks
 export const taskSchema = z.object({
@@ -39,7 +40,9 @@ export const taskSchema = z.object({
     name: z.string(),
     description: z.string(),
     project: z.string(),
-    status: TaskStatusSchema  //Debe ser uno de los definidos arriba
+    status: TaskStatusSchema,  //Debe ser uno de los definidos arriba
+    createdAt: z.string(),
+    updatedAt: z.string()
 })
 
 //Tipo de dato para task
