@@ -43,6 +43,7 @@ export default function TaskModalDetails() {
             queryClient.invalidateQueries({queryKey: ['projectDetails']})  //hacemos que recargue el query y no cuarde el cache
             queryClient.invalidateQueries({queryKey: ['task']})  //hacemos que recargue el query
             toast.success(data)
+            navigate(location.pathname, {replace: true})  //Nos navega de regreso al modal
         }
     })
 
